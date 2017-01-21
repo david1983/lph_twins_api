@@ -3,6 +3,7 @@ var config = require("config");
 var app = express();
 
 app.get('/', (req, res)=>{
+    console.log('root /')
     res.json({
         data: "the api is running fine"
     })
