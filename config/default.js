@@ -5,10 +5,10 @@ module.exports = {
     },
     db:{
         mysql: {
-            host: '',
-            db: '',
-            user: '',
-            password: ''
+            host: 'lhp-twins.cluster-cgccsfpmxbie.us-west-2.rds.amazonaws.com',            
+            database: 'lhptwins',
+            user: 'david',
+            password: 'q1w2e3r4'
         }
     }
 }
