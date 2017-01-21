@@ -1,7 +1,8 @@
 module.exports = {
     app: {
         instanceName: "API_0",
-        port: 3000
+        port: 3000,
+        cipher_secret: "this_is_a_secret"
     },
     db:{
         mysql: {
