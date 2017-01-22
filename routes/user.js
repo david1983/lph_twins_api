@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require("../libs/db");
 var cipher = require("../libs/cipher");
 var Token = require("../models/token");
-var User = require("../models/User");
+var User = require("../models/user");
 // authorizer is a middleware that check if the user can access the endpoint
 router.use(require("../libs/authorizer"));
 
