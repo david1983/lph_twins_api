@@ -11,7 +11,9 @@ app.use(bodyParser.json())
 
 app.all('/update', (req, res)=>{
     res.end()
-    var r = cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");    
+    setTimeout(function() {
+        cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");        
+    }, 1000);    
 })
 app.use('/api', require("./routes/crud"))
 app.get('/', (req, res)=>{
