@@ -7,6 +7,11 @@ var app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+
+app.all('/update', (req, res)=>{
+    var r = cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");
+    res.json(r)
+})
 app.use('/api', require("./routes/crud"))
 app.get('/', (req, res)=>{
     console.log('root /')    
