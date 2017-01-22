@@ -5,6 +5,8 @@ var cipher = require("../libs/cipher");
 // authorizer is a middleware that check if the user can access the endpoint
 router.use( require("../libs/authorizer"));
 
+
+
 router.post('/login', (req, res)=>{
     if(!req.body.password && !req.body.email) res.json({error: 'no data provided'});
     var sql = "select * from users where email = ? and password = ?"
@@ -15,7 +17,7 @@ router.post('/login', (req, res)=>{
 })
 
 router.post('/logout', (req, res)=>{
-    
+
 })
 
 router.post('/register', (req, res)=>{
