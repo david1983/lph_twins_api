@@ -8,7 +8,7 @@ var cp = require("child_process");
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-
+app.use(require("./libs/authorizer"));
 app.all('/update', (req, res)=>{
     res.end()
     setTimeout(function() {
@@ -19,7 +19,7 @@ app.use('/api', require("./routes/crud"))
 app.use("/api/user", require("./routes/user"))
 
 app.get('/', (req, res)=>{
-    console.log('root /')    
+    console.log(req.user)
     res.json({
         data: "the api is running fine"
     })
