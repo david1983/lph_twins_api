@@ -7,6 +7,7 @@ router.use( require("../libs/authorizer"));
 
 
 
+
 router.post('/login', (req, res)=>{
     if(!req.body.password && !req.body.email) res.json({error: 'no data provided'});
     var sql = "select * from users where email = ? and password = ?"
