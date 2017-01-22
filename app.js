@@ -16,6 +16,8 @@ app.all('/update', (req, res)=>{
     }, 1000);    
 })
 app.use('/api', require("./routes/crud"))
+app.use("/api/user", require("./routes/user"))
+
 app.get('/', (req, res)=>{
     console.log('root /')    
     res.json({
