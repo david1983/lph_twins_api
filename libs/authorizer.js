@@ -9,6 +9,7 @@ module.exports = function(req, res, next){
             if(err || !decoded) return next() 
             var u = new User();
             u.getById(decoded.id).then((user)=>{
+                console.log(user)
                 req.user = user;
                 next();
             }).catch((e)=>{res.json({error:e})});

@@ -15,7 +15,7 @@ app.all('/update', (req, res)=>{
         cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");        
     }, 1000);    
 })
-app.use('/api', require("./routes/crud"))
+// app.use('/api', require("./routes/crud"))
 app.use("/api/user", require("./routes/user"))
 
 app.get('/', (req, res)=>{

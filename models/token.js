@@ -31,4 +31,9 @@ module.exports = function(user){
 
         })
     }
+
+    this.delete = function(){
+        var sql = "delete from tokens where user_id = ?"
+        return db.queryP(sql,[this.user.id])
+    }
 }

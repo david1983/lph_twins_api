@@ -26,9 +26,10 @@ module.exports = function(user){
 
     this.update =  (data) =>{
         var sql = "update users set ? where id = ?";
-        db.queryP(sql, [data, this.user.id]).then((user)=>{
-            console.log(user);
-            return Promise();
+        return db.queryP(sql, [data, this.user.id]).then((r)=>{                        
+            console.log(r)
+            // this.user = Object.assign(this.user, req.body);
+            return this.getById(this.user.id)
         })
     }
 }
