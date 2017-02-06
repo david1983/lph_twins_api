@@ -13,7 +13,7 @@ app.use(require("./libs/authorizer"));
 app.all('/update', (req, res)=>{
     res.end()
     setTimeout(function() {
-        cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");        
+        cp.execSync("cd /home/ubuntu/lph_twins_api && git pull && npm install && pm2 restart API_0");        
     }, 1000);    
 })
 // app.use('/api', require("./routes/crud"))
