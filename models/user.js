@@ -1,10 +1,12 @@
 var db = require("../libs/db");
-const schema = ["id", "email", "first_name", "last_name", 'dob', 'address', 'town', 'country', 'phone', 'role']
+var moment = require("moment")
+const schema = ["id", "email", "password", "first_name", "last_name", 'dob', 'address', 'town', 'country', 'phone', 'role']
 
 module.exports = function(user){
     if(user)
         this.user = schema.reduce((a,i)=>{
             a[i] = user[i]
+            if(user.dob) user.dob = moment(user.dob).format("YYYY-MM-DD")
             return a;
         },{});
     this.getById = (id)=>{
@@ -31,8 +33,10 @@ module.exports = function(user){
     }
 
     this.update =  () =>{
+        var u = this.user;
+        delete u.password;
         var sql = "update users set ? where id = ?";
-        return db.queryP(sql, [this.user, this.user.id]).then((r)=>{
+        return db.queryP(sql, [u, this.user.id]).then((r)=>{
             console.log(r)
             // this.user = Object.assign(this.user, req.body);
             return this.getById(this.user.id)
