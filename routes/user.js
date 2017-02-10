@@ -7,10 +7,8 @@ var User = require("../models/user");
 // authorizer is a middleware that check if the user can access the endpoint
 router.use(require("../libs/authorizer"));
 
-
-
-
 router.post('/login', (req, res) => {
+    console.log(req.body)
     if (!req.body.password && !req.body.email) res.json({ error: 'no data provided' });
     var sql = "select * from users where email = ? and password = ?"
     db.query(sql, [req.body.email, cipher.cipher(req.body.password)], (e, r) => {
@@ -63,6 +61,12 @@ router.post('/register', (req, res) => {
         })
 });
 
+
+router.get('/profile', (req, res) =>{
+    if(!req.user) return res.json({error: "You need to be logged in"})
+    res.json(req.user)
+})
+
 router.get('/', (req, res)=>{
     if(!req.user) return res.json({error: "You need to be logged in"})
     if(!req.user.role=="1") return res.json({error: 'Unauthorized'});
@@ -87,8 +91,8 @@ router.post('/:id', (req, res)=>{
     if(!req.params.id) return res.json({error: 'No id specified'});    
     if(!req.body) return res.json({error: 'No id specified'});    
     if(req.user.role != 1 && req.user.id != req.params.id) return res.json({error: 'Unauthorized'});
-    var U = new User(req.user);
-    U.update(req.body).then((r)=>{
+    var U = new User(req.body);
+    U.update().then((r)=>{
         res.json(r)
     }).catch((e)=>{ res.json({error: e})})
 });

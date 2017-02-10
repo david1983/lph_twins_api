@@ -12,7 +12,10 @@ connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
 connection.queryP = function (sql, arr) {
   return new Promise((resolve, reject) => {
     connection.query(sql,arr, function (err, rows, fields) {
-      if (err) reject(err);
+      if (err) {
+        console.log(err)
+        reject(err);
+      }
       resolve(rows)
     });
   });

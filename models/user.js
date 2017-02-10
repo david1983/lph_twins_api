@@ -1,7 +1,12 @@
 var db = require("../libs/db");
+const schema = ["id", "email", "first_name", "last_name", 'dob', 'address', 'town', 'country', 'phone', 'role']
 
 module.exports = function(user){
-    this.user = user;
+    if(user)
+        this.user = schema.reduce((a,i)=>{
+            a[i] = user[i]
+            return a;
+        },{});
     this.getById = (id)=>{
         var sql = "select * from users where id = ?"
         return db.queryP(sql, [id]).then((r)=>{            
@@ -14,7 +19,8 @@ module.exports = function(user){
         return this.user;
     }
 
-    this.create = ()=>{        
+    this.create = ()=>{
+
         var sql = "insert into users set ?"
         return db.queryP(sql, [this.user]);
     }
@@ -24,9 +30,9 @@ module.exports = function(user){
         return db.queryP(sql, [this.user.id]);
     }
 
-    this.update =  (data) =>{
+    this.update =  () =>{
         var sql = "update users set ? where id = ?";
-        return db.queryP(sql, [data, this.user.id]).then((r)=>{                        
+        return db.queryP(sql, [this.user, this.user.id]).then((r)=>{
             console.log(r)
             // this.user = Object.assign(this.user, req.body);
             return this.getById(this.user.id)

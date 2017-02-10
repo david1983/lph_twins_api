@@ -6,9 +6,13 @@ module.exports = {
     },
     db:{
         mysql: {
-            host: 'lhp-twins.cluster-cgccsfpmxbie.us-west-2.rds.amazonaws.com',            
-            database: 'lhptwins',
-            user: 'david',
+            // host: 'lhp-twins.cluster-cgccsfpmxbie.us-west-2.rds.amazonaws.com',
+            // database: 'lhptwins',
+            // user: 'david',
+            // password: 'q1w2e3r4'
+            host: '52.24.224.33',
+            database: 'lph-twins',
+            user: 'lph-user',
             password: 'q1w2e3r4'
         }
     }
